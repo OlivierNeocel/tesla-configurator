@@ -4,7 +4,6 @@ import {CurrencyPipe, NgForOf} from "@angular/common";
 import {ModelService} from "../../services/model.service";
 import { Color } from '../../api/color';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {ColorComponent} from "./color/color.component";
 import {filter, from, map, Observable, of, tap} from "rxjs";
 
 @Component({
@@ -14,7 +13,6 @@ import {filter, from, map, Observable, of, tap} from "rxjs";
     CurrencyPipe,
     NgForOf,
     ReactiveFormsModule,
-    ColorComponent
   ],
   templateUrl: './model-and-color.component.html',
   styleUrl: './model-and-color.component.scss'
