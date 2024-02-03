@@ -5,6 +5,7 @@ import {ModelService} from "../../services/model.service";
 import { Color } from '../../api/color';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {ColorComponent} from "./color/color.component";
+import {filter, from, map, Observable, of, tap} from "rxjs";
 
 @Component({
   selector: 'app-model-and-color',
@@ -21,23 +22,40 @@ import {ColorComponent} from "./color/color.component";
 export class ModelAndColorComponent implements OnInit {
   formGroup: FormGroup;
   models: Model[] = [];
+  colors: Color[] = [];
 
   selectedModel?: Model;
   selectedColor?: Color;
 
   constructor(private modelService: ModelService, private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
-      modelControl: [{}], // Initialize with an empty value
+      modelControl: [''], // Initialize with an empty value
+      colorControl: ['']
     });
   }
 
   ngOnInit() {
     this.getModels();
+
+    this.formGroup
+      .get('modelControl')
+      ?.valueChanges.pipe(
+      tap(() => {
+        this.formGroup.patchValue({colorControl: ''});
+      })
+    ).subscribe();
   }
 
-  onModelChange() {
-    // No need to do anything here, the child component will automatically update the colors based on the selected model.
-    console.log(`Model changed.`);
+  onSelect(event: Event){
+    const { target } = event;
+    if (target) {
+      const modelCode = (target as HTMLSelectElement).value;
+      from(this.models).pipe(
+        filter(model => model.code === modelCode),
+        map(model => model.colors)
+      ).subscribe( colors => this.colors = colors);
+    }
+
   }
 
   private getModels() {
