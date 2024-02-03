@@ -12,4 +12,4 @@
     <option *ngFor="let model of models" [value]="model">{{ model.description }}</option>
   </select>
 </form>
-<app-color [selectedModel]="formGroup.get('modelControl').value"></app-color>
+<app-color [selectedModel]="formGroup.get('modelControl')?.value"></app-color>

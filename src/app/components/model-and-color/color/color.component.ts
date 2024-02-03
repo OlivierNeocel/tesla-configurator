@@ -1,11 +1,14 @@
 import {Component, Input} from '@angular/core';
 import {Color} from "../../../api/color";
 import {Model} from "../../../api/model";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-color',
   standalone: true,
-  imports: [],
+  imports: [
+    NgForOf
+  ],
   templateUrl: './color.component.html',
   styleUrl: './color.component.scss'
 })

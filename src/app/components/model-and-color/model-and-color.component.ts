@@ -27,7 +27,7 @@ export class ModelAndColorComponent implements OnInit {
 
   constructor(private modelService: ModelService, private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
-      modelControl: [], // Initialize with an empty value
+      modelControl: [{}], // Initialize with an empty value
     });
   }
 
@@ -37,6 +37,7 @@ export class ModelAndColorComponent implements OnInit {
 
   onModelChange() {
     // No need to do anything here, the child component will automatically update the colors based on the selected model.
+    console.log(`Model changed.`);
   }
 
   private getModels() {
