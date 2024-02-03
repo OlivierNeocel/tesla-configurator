@@ -1,15 +1,18 @@
 import {Component} from '@angular/core';
 import {AsyncPipe, JsonPipe} from '@angular/common';
+import {RouterLink, RouterOutlet} from "@angular/router";
 
 @Component({
+  imports: [
+    AsyncPipe,
+    JsonPipe,
+    RouterLink,
+    RouterOutlet,
+  ],
   selector: 'app-root',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe],
-  template: `
-    <h1>Hello from {{ name }}!</h1>
-  `,
+  templateUrl: './app.component.html',
 })
 export class AppComponent {
-  name = 'Angular';
-
+  title = 'TESLA Car Configurator';
 }

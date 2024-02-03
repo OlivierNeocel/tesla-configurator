@@ -1,0 +1,4 @@
+<select>
+  <option value="">Select a color</option>
+  <option *ngFor="let color of colors" [value]="color">{{ color.description }}</option>
+</select>
