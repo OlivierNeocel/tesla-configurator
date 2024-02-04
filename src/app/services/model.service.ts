@@ -16,6 +16,6 @@ export class ModelService {
     return this.http.get<Model[]>(this.modelsUrl)
       .pipe(
         tap(() => console.log("Fetched models"))
-      )
+      );
   }
 }

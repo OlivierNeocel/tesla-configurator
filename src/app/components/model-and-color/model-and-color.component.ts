@@ -4,8 +4,14 @@ import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 import {ModelService} from "../../services/model.service";
 import { Color } from '../../api/color';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {filter, from, map, Observable, of, Subject, takeUntil, tap} from "rxjs";
-import {LocalStorageService, SELECTED_COLOR_KEY, SELECTED_MODEL_KEY} from "../../services/local-storage.service";
+import {filter, from, map, Subject, takeUntil, tap} from "rxjs";
+import {
+  INCLUDE_TOW_KEY, INCLUDE_YOKE_KEY,
+  LocalStorageService,
+  SELECTED_COLOR_KEY,
+  SELECTED_CONFIG_KEY,
+  SELECTED_MODEL_KEY
+} from "../../services/local-storage.service";
 
 @Component({
   selector: 'app-model-and-color',
@@ -69,21 +75,39 @@ export class ModelAndColorComponent implements OnInit, OnDestroy {
     this.destroySubject.next();
   }
 
-  onModelSelect(event: Event){
-    const { target } = event;
+  onModelSelect($event: Event){
+    const { target } = $event;
     if (target) {
       const modelCode = (target as HTMLSelectElement).value;
-      from(this.models).pipe(
-        takeUntil(this.destroySubject),
-        filter(model => model.code === modelCode),
-        tap(model => this.localStorageService.setItem(SELECTED_MODEL_KEY, JSON.stringify(model))),
-        map(model => model.colors)
-      ).subscribe( colors => {
-        this.colors = colors;
-        this.selectedColor = colors[0];
-        this.formGroup.patchValue({colorControl: this.selectedColor.code});
-        this.localStorageService.setItem(SELECTED_COLOR_KEY, JSON.stringify(this.selectedColor));
-      });
+      if (modelCode) {
+        from(this.models).pipe(
+          takeUntil(this.destroySubject),
+          filter(model => model.code === modelCode),
+          tap(model => this.localStorageService.setItem(SELECTED_MODEL_KEY, JSON.stringify(model))),
+          map(model => model.colors)
+        ).subscribe( colors => {
+          this.colors = colors;
+          this.selectedColor = colors[0];
+          this.formGroup.patchValue({colorControl: this.selectedColor.code});
+          this.localStorageService.setItem(SELECTED_COLOR_KEY, JSON.stringify(this.selectedColor));
+
+          // Clear Step 2 choices
+          this.localStorageService.removeItem(SELECTED_CONFIG_KEY);
+          this.localStorageService.removeItem(INCLUDE_TOW_KEY);
+          this.localStorageService.removeItem(INCLUDE_YOKE_KEY);
+        });
+      } else {
+        this.selectedModel = undefined;
+        this.localStorageService.removeItem(SELECTED_MODEL_KEY);
+        this.colors = [];
+        this.localStorageService.removeItem(SELECTED_COLOR_KEY);
+
+        // Clear Step 2 choices
+        this.localStorageService.removeItem(SELECTED_CONFIG_KEY);
+        this.localStorageService.removeItem(INCLUDE_TOW_KEY);
+        this.localStorageService.removeItem(INCLUDE_YOKE_KEY);
+      }
+
     }
   }
 

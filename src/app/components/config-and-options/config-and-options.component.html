@@ -1,1 +1,30 @@
 <h1>Step 2: Select your config and options</h1>
+
+<form [formGroup]="formGroup">
+  <label for="configSelect">Config:</label>
+  <select id="configSelect" formControlName="configControl" (change)="onConfigSelect($event)" >
+    <option value="">Choose...</option>
+    <option *ngFor="let config of configs" value="{{config.id}}">
+      {{config.description}}
+    </option>
+  </select>
+
+  <div *ngIf="selectedConfig">
+    Range: {{selectedConfig.range}} miles - Max speed: {{selectedConfig.speed}} - Cost: {{selectedConfig.price | currency:"USD"}}
+  </div>
+
+  <div *ngIf="isTowHitchAvailable">
+    <label for="includeTow">Tow hitch? </label>
+    <input type="checkbox" id="includeTow" formControlName="includeTowControl" (change)="onIncludeTowChange($event)"/>
+  </div>
+
+  <div *ngIf="isYokeAvailable">
+    <label for="includeYoke">Yoke steering wheel? </label>
+    <input type="checkbox" id="includeYoke" formControlName="includeYokeControl" (change)="onIncludeYokeChange($event)"/>
+  </div>
+
+  <div *ngIf="selectedModel && selectedColor">
+    <img src="https://interstate21.com/tesla-app/images/{{selectedModel.code}}/{{selectedColor.code}}.jpg"
+         alt="{{selectedModel.description}} {{selectedColor.description}}">
+  </div>
+</form>
