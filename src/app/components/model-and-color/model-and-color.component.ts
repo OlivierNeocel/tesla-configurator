@@ -41,6 +41,19 @@ export class ModelAndColorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getModels();
 
+    if (this.localStorageService.getItem('selectedModel')) {
+      const selectedModel = this.localStorageService.getItem('selectedModel') as string;
+      this.selectedModel = JSON.parse(selectedModel) as Model;
+      this.colors = this.selectedModel.colors;
+      this.formGroup.patchValue({modelControl: this.selectedModel.code});
+    }
+
+    if (this.localStorageService.getItem('selectedColor')) {
+      const selectedColor = this.localStorageService.getItem('selectedColor') as string;
+      this.selectedColor = JSON.parse(selectedColor) as Color;
+      this.formGroup.patchValue({colorControl: this.selectedColor.code});
+    }
+
     this.formGroup
       .get('modelControl')
       ?.valueChanges.pipe(
