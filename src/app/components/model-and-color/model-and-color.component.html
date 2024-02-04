@@ -2,20 +2,24 @@
 
 <form [formGroup]="formGroup">
   <label for="modelSelect">Model:</label>
-  <select id="modelSelect" formControlName="modelControl" (change)="onSelect($event)">
-    <option value="">Select a model</option>
+  <select id="modelSelect" formControlName="modelControl" (change)="onModelSelect($event)">
+    <option value="">Choose...</option>
     <option *ngFor="let model of models" value="{{model.code}}">
       {{ model.description }}
     </option>
   </select>
 
-  <div>
+  <div *ngIf="selectedModel">
     <label for="colorSelect">Color:</label>
-    <select id="colorSelect" formControlName="colorControl">
-      <option value="">Select a color</option>
-      <option *ngFor="let color of colors" value="{{color.code}}">
+    <select id="colorSelect" formControlName="colorControl"  (change)="onColorSelect($event)">
+      <option *ngFor="let color of colors" value="{{color.code}}" >
         {{ color.description }}
       </option>
     </select>
+  </div>
+
+  <div *ngIf="selectedModel && selectedColor">
+    <img src="https://interstate21.com/tesla-app/images/{{selectedModel.code}}/{{selectedColor.code}}.jpg"
+         alt="{{selectedModel.description}} {{selectedColor.description}}">
   </div>
 </form>
