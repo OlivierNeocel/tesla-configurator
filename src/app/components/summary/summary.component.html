@@ -1,1 +1,35 @@
 <h1>Step 3: Summary</h1>
+
+<h2>Your Tesla {{selectedModel?.description}}</h2>
+
+<h3>{{selectedConfig?.description}}</h3> {{selectedConfig?.price | currency:'USD'}}
+
+<div>
+  Range: {{selectedConfig?.range}} miles - Max speed: {{selectedConfig?.speed}}
+  {{selectedConfig?.price | currency:'USD'}}
+</div>
+
+<div>
+  {{selectedColor?.description}}
+  {{selectedColor?.price | currency:'USD'}}
+</div>
+
+<div *ngIf="includeTow">
+  Tow Hitch Package
+  {{'1000' | currency:'USD'}}
+</div>
+
+<div *ngIf="includeYoke">
+  Yoke steering wheel
+  {{'1000' | currency:'USD'}}
+</div>
+
+<div>
+  TOTAL COST
+  {{totalCost()  | currency:'USD'}}
+</div>
+
+<div *ngIf="selectedModel && selectedColor">
+  <img src="https://interstate21.com/tesla-app/images/{{selectedModel.code}}/{{selectedColor.code}}.jpg"
+       alt="{{selectedModel.description}} {{selectedColor.description}}">
+</div>
