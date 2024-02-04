@@ -5,7 +5,7 @@ import {ModelService} from "../../services/model.service";
 import { Color } from '../../api/color';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {filter, from, map, Observable, of, Subject, takeUntil, tap} from "rxjs";
-import {LocalStorageService} from "../../services/local-storage.service";
+import {LocalStorageService, SELECTED_COLOR_KEY, SELECTED_MODEL_KEY} from "../../services/local-storage.service";
 
 @Component({
   selector: 'app-model-and-color',
@@ -41,15 +41,15 @@ export class ModelAndColorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getModels();
 
-    if (this.localStorageService.getItem('selectedModel')) {
-      const selectedModel = this.localStorageService.getItem('selectedModel') as string;
+    if (this.localStorageService.getItem(SELECTED_MODEL_KEY)) {
+      const selectedModel = this.localStorageService.getItem(SELECTED_MODEL_KEY) as string;
       this.selectedModel = JSON.parse(selectedModel) as Model;
       this.colors = this.selectedModel.colors;
       this.formGroup.patchValue({modelControl: this.selectedModel.code});
     }
 
-    if (this.localStorageService.getItem('selectedColor')) {
-      const selectedColor = this.localStorageService.getItem('selectedColor') as string;
+    if (this.localStorageService.getItem(SELECTED_COLOR_KEY)) {
+      const selectedColor = this.localStorageService.getItem(SELECTED_COLOR_KEY) as string;
       this.selectedColor = JSON.parse(selectedColor) as Color;
       this.formGroup.patchValue({colorControl: this.selectedColor.code});
     }
@@ -76,13 +76,13 @@ export class ModelAndColorComponent implements OnInit, OnDestroy {
       from(this.models).pipe(
         takeUntil(this.destroySubject),
         filter(model => model.code === modelCode),
-        tap(model => this.localStorageService.setItem('selectedModel', JSON.stringify(model))),
+        tap(model => this.localStorageService.setItem(SELECTED_MODEL_KEY, JSON.stringify(model))),
         map(model => model.colors)
       ).subscribe( colors => {
         this.colors = colors;
         this.selectedColor = colors[0];
         this.formGroup.patchValue({colorControl: this.selectedColor.code});
-        this.localStorageService.setItem('selectedColor', JSON.stringify(this.selectedColor));
+        this.localStorageService.setItem(SELECTED_COLOR_KEY, JSON.stringify(this.selectedColor));
       });
     }
   }
@@ -96,7 +96,7 @@ export class ModelAndColorComponent implements OnInit, OnDestroy {
         filter(color => color.code === colorCode),
       ).subscribe( color => {
         this.selectedColor = color;
-        this.localStorageService.setItem('selectedColor', JSON.stringify(this.selectedColor));
+        this.localStorageService.setItem(SELECTED_COLOR_KEY, JSON.stringify(this.selectedColor));
       });
     }
   }

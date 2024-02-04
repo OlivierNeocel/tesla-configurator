@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+export const SELECTED_MODEL_KEY: string = 'selectedModel';
+export const SELECTED_COLOR_KEY: string = 'selectedColor';
+
 @Injectable({
   providedIn: 'root'
 })
