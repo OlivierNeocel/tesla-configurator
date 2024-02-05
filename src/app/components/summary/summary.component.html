@@ -2,34 +2,33 @@
 
 <h2>Your Tesla {{selectedModel?.description}}</h2>
 
-<h3>{{selectedConfig?.description}}</h3> {{selectedConfig?.price | currency:'USD'}}
+<table>
+  <tr>
+    <td>{{selectedConfig?.description}}</td>
+    <td>{{selectedConfig?.price | currency:'USD'}}</td>
+  </tr>
+  <tr>
+    <td>
+      Range: {{selectedConfig?.range}} miles - Max speed: {{selectedConfig?.speed}}
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>{{selectedColor?.description}} Color</td>
+    <td>{{selectedColor?.price | currency:'USD'}}</td>
+  </tr>
+  <tr *ngIf="includeTow">
+    <td>Tow Hitch Package</td>
+    <td>{{'1000' | currency:'USD'}}</td>
+  </tr>
+  <tr *ngIf="includeYoke">
+    <td>Yoke steering wheel</td>
+    <td>{{'1000' | currency:'USD'}}</td>
+  </tr>
+  <tr>
+    <td>TOTAL COST</td>
+    <td>{{totalCost()  | currency:'USD'}}</td>
+  </tr>
+</table>
 
-<div>
-  Range: {{selectedConfig?.range}} miles - Max speed: {{selectedConfig?.speed}}
-  {{selectedConfig?.price | currency:'USD'}}
-</div>
-
-<div>
-  {{selectedColor?.description}}
-  {{selectedColor?.price | currency:'USD'}}
-</div>
-
-<div *ngIf="includeTow">
-  Tow Hitch Package
-  {{'1000' | currency:'USD'}}
-</div>
-
-<div *ngIf="includeYoke">
-  Yoke steering wheel
-  {{'1000' | currency:'USD'}}
-</div>
-
-<div>
-  TOTAL COST
-  {{totalCost()  | currency:'USD'}}
-</div>
-
-<div *ngIf="selectedModel && selectedColor">
-  <img src="https://interstate21.com/tesla-app/images/{{selectedModel.code}}/{{selectedColor.code}}.jpg"
-       alt="{{selectedModel.description}} {{selectedColor.description}}">
-</div>
+<app-image [selectedModel]="selectedModel" [selectedColor]="selectedColor" ></app-image>

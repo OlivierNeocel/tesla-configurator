@@ -11,13 +11,15 @@ import {
 import {OptionService} from "../../services/option.service";
 import {FormBuilder} from "@angular/forms";
 import {CurrencyPipe, NgIf} from "@angular/common";
+import {ImageComponent} from "../image/image.component";
 
 @Component({
   selector: 'app-summary',
   standalone: true,
   imports: [
     CurrencyPipe,
-    NgIf
+    NgIf,
+    ImageComponent
   ],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss'

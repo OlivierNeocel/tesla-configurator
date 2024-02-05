@@ -12,6 +12,7 @@ import {
   SELECTED_CONFIG_KEY,
   SELECTED_MODEL_KEY
 } from "../../services/local-storage.service";
+import {ImageComponent} from "../image/image.component";
 
 @Component({
   selector: 'app-model-and-color',
@@ -21,6 +22,7 @@ import {
     NgForOf,
     ReactiveFormsModule,
     NgIf,
+    ImageComponent,
   ],
   templateUrl: './model-and-color.component.html',
   styleUrl: './model-and-color.component.scss'

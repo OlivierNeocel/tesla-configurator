@@ -23,8 +23,5 @@
     <input type="checkbox" id="includeYoke" formControlName="includeYokeControl" (change)="onIncludeYokeChange($event)"/>
   </div>
 
-  <div *ngIf="selectedModel && selectedColor">
-    <img src="https://interstate21.com/tesla-app/images/{{selectedModel.code}}/{{selectedColor.code}}.jpg"
-         alt="{{selectedModel.description}} {{selectedColor.description}}">
-  </div>
+  <app-image [selectedModel]="selectedModel" [selectedColor]="selectedColor" ></app-image>
 </form>

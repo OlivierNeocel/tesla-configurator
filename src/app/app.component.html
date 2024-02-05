@@ -1,17 +1,23 @@
 <h1>{{title}}</h1>
 
-<nav>
-  <a [routerLink]="['/model']" title="Choose your car model and color" id="step1">
-    <h1>Step 1</h1>
-  </a>
-
-  <a [routerLink]="['/config']" title="Choose your model's configuration and options" id="step2">
-    <h1>Step 2</h1>
-  </a>
-
-  <a [routerLink]="['/summary']" title="Show summary of the total cost of your selected car model and options" id="step3">
-    <h1>Step 3</h1>
-  </a>
-</nav>
+<table>
+  <tr>
+    <td>
+      <a [routerLink]="['/model']" title="Choose your car model and color" id="step1">
+        <h1>Step 1</h1>
+      </a>
+    </td>
+    <td>
+      <a [routerLink]="['/config']" title="Choose your model's configuration and options" id="step2">
+        <h1>Step 2</h1>
+      </a>
+    </td>
+    <td>
+      <a [routerLink]="['/summary']" title="Show summary of the total cost of your selected car model and options" id="step3">
+        <h1>Step 3</h1>
+      </a>
+    </td>
+  </tr>
+</table>
 
 <router-outlet></router-outlet>
