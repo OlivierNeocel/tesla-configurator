@@ -1,18 +1,8 @@
 import { Routes } from '@angular/router';
 import {ModelAndColorComponent} from "./components/model-and-color/model-and-color.component";
-import {LocalStorageService, SELECTED_CONFIG_KEY, SELECTED_MODEL_KEY} from "./services/local-storage.service";
-import {inject} from "@angular/core";
+import {ConfigGuard} from "./guards/config.guard";
+import {SummaryGuard} from "./guards/summary.guard";
 
-const ConfigGuard = (): boolean => {
-  const localStorageService: LocalStorageService = inject(LocalStorageService);
-  return localStorageService.getItem(SELECTED_MODEL_KEY) !== null
-    && localStorageService.getItem(SELECTED_MODEL_KEY) !== null;
-}
-
-const SummaryGuard = (): boolean => {
-  const localStorageService: LocalStorageService = inject(LocalStorageService);
-  return localStorageService.getItem(SELECTED_CONFIG_KEY) !== null;
-}
 export const routes: Routes = [
   { path: '', component: ModelAndColorComponent },
   {

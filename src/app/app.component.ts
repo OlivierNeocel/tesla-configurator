@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AsyncPipe, JsonPipe} from '@angular/common';
 import {RouterLink, RouterOutlet} from "@angular/router";
+import {StepsComponent} from "./components/steps/steps.component";
 
 @Component({
   imports: [
@@ -8,6 +9,7 @@ import {RouterLink, RouterOutlet} from "@angular/router";
     JsonPipe,
     RouterLink,
     RouterOutlet,
+    StepsComponent,
   ],
   selector: 'app-root',
   standalone: true,

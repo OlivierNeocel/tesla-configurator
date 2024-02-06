@@ -12,7 +12,7 @@ import {
   SELECTED_CONFIG_KEY,
   SELECTED_MODEL_KEY
 } from "../../services/local-storage.service";
-import {ImageComponent} from "../image/image.component";
+import {ImageComponent} from "../../shared/components/image/image.component";
 
 @Component({
   selector: 'app-model-and-color',

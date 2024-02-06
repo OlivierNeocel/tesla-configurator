@@ -13,7 +13,7 @@ import {
 import {Model} from "../../api/model";
 import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 import {Color} from "../../api/color";
-import {ImageComponent} from "../image/image.component";
+import {ImageComponent} from "../../shared/components/image/image.component";
 
 @Component({
   selector: 'app-config-and-options',

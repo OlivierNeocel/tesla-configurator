@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, tap} from "rxjs";
-import {Model} from "../api/model";
 import {Option} from "../api/option";
 
 @Injectable({

@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {NgIf} from "@angular/common";
-import {Model} from "../../api/model";
-import {Color} from "../../api/color";
+import {Model} from "../../../api/model";
+import {Color} from "../../../api/color";
 
 @Component({
   selector: 'app-image',
