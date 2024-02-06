@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Model} from "../../api/model";
+import {Model} from "../../model/model";
 import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 import {ModelService} from "../../services/model.service";
-import { Color } from '../../api/color';
+import { Color } from '../../model/color';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {filter, from, map, Subject, takeUntil, tap} from "rxjs";
 import {

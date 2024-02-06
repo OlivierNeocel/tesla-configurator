@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Config} from "../../api/config";
-import {Model} from "../../api/model";
-import {Color} from "../../api/color";
+import {Config} from "../../model/config";
+import {Model} from "../../model/model";
+import {Color} from "../../model/color";
 import {
   INCLUDE_TOW_KEY, INCLUDE_YOKE_KEY, LocalStorageService,
   SELECTED_COLOR_KEY,

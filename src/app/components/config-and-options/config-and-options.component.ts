@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Config} from "../../api/config";
+import {Config} from "../../model/config";
 import {filter, from, Subject, takeUntil} from "rxjs";
 import {OptionService} from "../../services/option.service";
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
@@ -10,9 +10,9 @@ import {
   SELECTED_CONFIG_KEY,
   SELECTED_MODEL_KEY
 } from "../../services/local-storage.service";
-import {Model} from "../../api/model";
+import {Model} from "../../model/model";
 import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
-import {Color} from "../../api/color";
+import {Color} from "../../model/color";
 import {ImageComponent} from "../../shared/components/image/image.component";
 
 @Component({
