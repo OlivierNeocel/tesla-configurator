@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, tap} from "rxjs";
-import {Option} from "../model/option";
+import {Option} from "../../model/option";
 
 @Injectable({
   providedIn: 'root'

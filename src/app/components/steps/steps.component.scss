@@ -24,3 +24,6 @@ section {
   border: 3px solid white;
 }
 
+button.disabled:hover {
+  cursor:not-allowed
+}
