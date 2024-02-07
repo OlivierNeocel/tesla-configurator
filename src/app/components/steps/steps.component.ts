@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 import {Color} from "../../model/color";
 import {Config} from "../../model/config";
 import {Model} from "../../model/model";
@@ -13,6 +13,7 @@ import {SELECTED_COLOR_KEY, SELECTED_CONFIG_KEY, SELECTED_MODEL_KEY} from "../..
   standalone: true,
   imports: [
     RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './steps.component.html',
   styleUrl: './steps.component.scss'

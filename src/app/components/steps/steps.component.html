@@ -2,10 +2,12 @@
   <button [routerLink]="['/model']" routerLinkActive="active" id="step1" >
     Step 1
   </button>
-  <button [routerLink]="['/config']" routerLinkActive="active" id="step2" class="{{selectedColor ? '' : 'disabled'}}">
+  <button [routerLink]="['/config']" routerLinkActive="active" id="step2"
+          class="{{(selectedModel && selectedColor) ? '' : 'disabled'}}">
     Step 2
   </button>
-  <button [routerLink]="['/summary']" routerLinkActive="active" id="step3" class="{{selectedConfig ? '' : 'disabled'}}">
+  <button [routerLink]="['/summary']" routerLinkActive="active" id="step3"
+          class="{{selectedConfig ? '' : 'disabled'}}">
     Step 3
   </button>
 </section>
